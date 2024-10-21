@@ -1,0 +1,10 @@
+.scoreboard {
+  grid-template-columns: 1fr 4fr;
+}
+
+
+.scoreboard .teams {
+  /* display: flex; */
+  /* align-items: center; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
