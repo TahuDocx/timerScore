@@ -1,10 +1,3 @@
-.scoreboard {
-  grid-template-columns: 1fr 4fr;
-}
-
-
-.scoreboard .teams {
-  /* display: flex; */
-  /* align-items: center; */
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+.scoreboard .score, .scoreboard .score-buttons, .scoreboard .team-name  {
+  grid-template-columns: 12vw 12vw 12vw 12vw;
 }

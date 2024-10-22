@@ -3,7 +3,7 @@ import { Teams, alphaVal, valAlpha } from '../leaderBoard.js';
 import { CountdownTimer } from '../timer.js';
 
 const timer = new CountdownTimer(0,15,0, [[0,5,0], [0,10,0], [0,15,0]])
-const teams = new Teams(['A', 'B', 'C',  'D'])
+const teams = new Teams(['A', 'B', 'C', 'D'])
 
 function plusClick(id, score=100){
   // console.log(`plus ${id.id} ${id.class}`);
@@ -16,11 +16,15 @@ function minusClick(id, score=100){
 function updateScore(el){
   teams.updateScore(el);
 }
+function removeScore(el){
+  teams.removeScore(el);
+}
 
 document.plusClick = plusClick;
 document.minusClick = minusClick;
 document.timer = timer;
 document.updateScore = updateScore;
+document.removeScore = removeScore;
 
 
 const keyInput = Input(document.body);
@@ -52,7 +56,7 @@ document.body.addEventListener("keydown", (event) => {
       isWaiting = true;
 
       tmout = setTimeout(() => {
-        console.log('to');
+        // console.log('to');
         isWaiting = false;
       }, 1000); 
       // funcDone = true;
@@ -62,10 +66,10 @@ document.body.addEventListener("keydown", (event) => {
     if(isDone) return;
     if (keyInput.key_down(num)){
 
-      console.log('next');
+      // console.log('next');
       clearTimeout(tmout);
       clearTimeout(doneTo);
-      console.log('test');
+      // console.log('test');
       tmout = setTimeout(()=>{
         // isDone = false;
         console.log('to');
@@ -96,7 +100,42 @@ document.body.addEventListener("keydown", (event) => {
 
   doneTo = setTimeout(()=>{
     isDone = false;
-    console.log("dto");
+    // console.log("dto");
     // isWaiting = false;
   }, 1000);
+})
+
+const tabWajib = document.getElementById('tab-wajib');
+const tabQWC = document.getElementById('tab-qwc');
+const tabRebutan = document.getElementById('tab-rebutan');
+
+const scoreWajib = document.getElementById('score-wajib');
+const scoreQWC = document.getElementById('score-qwc');
+const scoreRebutan = document.getElementById('score-rebutan');
+
+const sectionName = document.getElementById('section-name');
+
+// console.log(tabWajib)
+
+// console.log(listWajib)
+
+tabWajib.addEventListener("click", () => {
+  sectionName.innerHTML = 'WAJIB';
+  scoreQWC.classList.remove('active');
+  scoreRebutan.classList.remove('active');
+  scoreWajib.classList.add('active');
+})
+
+tabQWC.addEventListener("click", () => {
+  sectionName.innerHTML = 'QUICK WORD CHALLENG';
+  scoreWajib.classList.remove('active');
+  scoreRebutan.classList.remove('active');
+  scoreQWC.classList.add('active');
+})
+
+tabRebutan.addEventListener("click", () => {
+  sectionName.innerHTML = 'REBUTAN';
+  scoreQWC.classList.remove('active');
+  scoreWajib.classList.remove('active');
+  scoreRebutan.classList.add('active');
 })

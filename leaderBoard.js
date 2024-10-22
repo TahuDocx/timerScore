@@ -1,6 +1,11 @@
-const teamsElement = document.getElementById("teams");
+const teamsElement = document.getElementById("team-name");
+// console.log(teamsElement);
+// const teamNameEl = document.getElementById('team-name');
 const LeaderBoardElement = document.getElementById("leaderboard");
-const scoreBoard = document.querySelector('.scoreboard .teams');
+
+const scoreWajib = document.getElementById('score-wajib');
+const scoreQWC = document.getElementById('score-qwc');
+const scoreRebutan = document.getElementById('score-rebutan');
 
 function sortFunction(a, b) {
   let x = a.scores.sumScore(), y = b.scores.sumScore();
@@ -31,16 +36,6 @@ const valAlpha = (s, x=0) => {
   return String.fromCharCode(s + 'A'.charCodeAt(x))
 }
 
-// let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+=-_";
-// let arrStr = str.split('');
-// let arr = [];
-// arrStr.forEach((char, i) =>{
-//   // console.log(`"${char}": ${alphaVal(char)},`);
-//   arr.push([i, char]);
-// })
-// arr.sort(sortFunc);
-// console.log(arr.toString());
-
 class TeamScore{
   constructor(teamId){
     this.id = teamId;
@@ -50,82 +45,90 @@ class TeamScore{
     this.scoreQWC = [];
     this.scoreRebutan = [];
   }
-  setElement(){
-    this.element = document.getElementById(`score_${this.id}`);
-    this.updateEl();
-  }
-  updateEl(){
-    let el = this.setElScoreWajib() + this.setElScoreQWC() + this.setElScoreRebutan();
-    this.element.innerHTML = el;
-  }
   setElScoreWajib(){
-    let temp = `
-      <div class="listscore wajib">
+    let temp = `<div class="scorelist grid">`
+
+    let score;
+    for(let i=0; i<10; i++){
+      let checkScore = (this.scoreWajib[i] || this.scoreWajib[i] === 0);
+      score = checkScore ? this.scoreWajib[i] : '';
+      temp += `<div class="score-container">
+        <div class="score-number">
+          ${score}
+        </div>`;
+
+      if(checkScore) temp += `<div class="remove-score button" id="remove_wajib_${i}_${this.id}" onclick="removeScore(this)">x</div>`
+
+      temp += `</div>`;
+    }
+
+    temp += `
         <div class="buttons">
           <div class="button minus" id="minus_wajib_${this.id}" onclick="updateScore(this)">-</div>
           <div class="button plus" id="plus_wajib_${this.id}" onclick="updateScore(this)">+</div>
         </div>
-        <div class="list">
+      </div>    
     `
-
-    let score;
-    for(let i=0; i<10; i++){
-      score = (this.scoreWajib[i] || this.scoreWajib[i] === 0) ? this.scoreWajib[i] : '';
-      temp += `<div class="score">${score}</div>`;
-    }
-
-    // this.scoreWajib.forEach(score => {
-    //   temp += `<div class="score">${score}</div>`;
-    // })
-    temp += `</div></div>`;
 
     return temp;
   }
+
   setElScoreQWC(){
-    let temp = `
-      <div class="listscore qwc">
-      <div class="buttons">
-        <div class="button minus" id="minus_qwc_${this.id}" onclick="updateScore(this)">-</div>
-        <div class="button plus" id="plus_qwc_${this.id}" onclick="updateScore(this)">+</div>
-      </div>
-      <div class="list">
-    `
+    let temp = `<div class="scorelist grid">`
 
     let score;
     for(let i=0; i<10; i++){
-      score = (this.scoreQWC[i] || this.scoreQWC[i] === 0) ? this.scoreQWC[i] : '';
-      temp += `<div class="score">${score}</div>`;
+      let checkScore = (this.scoreQWC[i] || this.scoreQWC[i] === 0);
+      score = checkScore ? this.scoreQWC[i] : '';
+      temp += `<div class="score-container">
+        <div class="score-number">
+          ${score}
+        </div>`;
+
+      if(checkScore) temp += `<div class="remove-score button" id="remove_qwc_${i}_${this.id}" onclick="removeScore(this)">x</div>`
+
+      temp += `</div>`;
     }
 
-    // this.scoreQWC.forEach(score => {
-    //   temp += `<div class="score">${score}</div>`;
-    // })
-    temp += `</div></div>`;
+    temp += `
+        <div class="buttons">
+          <div class="button minus" id="minus_qwc_${this.id}" onclick="updateScore(this)">-</div>
+          <div class="button plus" id="plus_qwc_${this.id}" onclick="updateScore(this)">+</div>
+        </div>
+      </div>    
+    `
 
     return temp;
   }
+
   setElScoreRebutan(){
-    let temp = `
-      <div class="listscore rebutan">
-      <div class="buttons">
-        <div class="button minus" id="minus_rebutan_${this.id}" onclick="updateScore(this)">-</div>
-        <div class="button plus" id="plus_rebutan_${this.id}" onclick="updateScore(this)">+</div>
-      </div>
-      <div class="list">
-    `
+    let temp = `<div class="scorelist grid">`
+
     let score;
     for(let i=0; i<10; i++){
-      score = (this.scoreRebutan[i] || this.scoreRebutan[i] === 0) ? this.scoreRebutan[i] : '';
-      temp += `<div class="score">${score}</div>`;
+      let checkScore = (this.scoreRebutan[i] || this.scoreRebutan[i] === 0);
+      score = checkScore ? this.scoreRebutan[i] : '';
+      temp += `<div class="score-container">
+        <div class="score-number">
+          ${score}
+        </div>`;
+
+      if(checkScore) temp += `<div class="remove-score button" id="remove_rebutan_${i}_${this.id}" onclick="removeScore(this)">x</div>`
+
+      temp += `</div>`;
     }
 
-    // this.scoreRebutan.forEach(score => {
-    //   temp += `<div class="score">${score}</div>`;
-    // })
-    temp += `</div></div>`;
+    temp += `
+        <div class="buttons">
+          <div class="button minus" id="minus_rebutan_${this.id}" onclick="updateScore(this)">-</div>
+          <div class="button plus" id="plus_rebutan_${this.id}" onclick="updateScore(this)">+</div>
+        </div>
+      </div>    
+    `
 
     return temp;
   }
+
   sumScore(){
     let totalScore = 0;
     this.scoreWajib.forEach(score => {
@@ -188,6 +191,29 @@ class TeamScore{
         return;
     }
   }
+  removeScore(category, index){
+    switch (category) {
+      case 'wajib':
+        if (this.scoreWajib.length === 0) return;
+        this.scoreWajib.splice(index, 1);
+        return;
+    
+      case 'qwc':
+        if (this.scoreQWC.length === 0) return;
+        this.scoreQWC.splice(index, 1);
+
+        return;
+  
+      case 'rebutan':
+        if (this.scoreRebutan.length === 0) return;
+        this.scoreRebutan.splice(index, 1);
+
+        return;
+          
+      default:
+        return;
+    }
+  }
 }
 
 class Team{
@@ -211,11 +237,24 @@ class Team{
 class LeaderBoard{
   constructor(teams){
     this.teams = [...teams];
-    this.update();
+    this.horizontalIterator = [];
+    // this.setHorizontalIterator();
+    this.updateHorizontalLeaderboard();
   }
-
+  largestScore(){
+    let largeScore = 0;
+    this.teams.forEach((team, i) =>{
+      largeScore = (team.scores.sumScore() > largeScore) ? team.scores.sumScore() : largeScore;
+    })
+    return largeScore;
+  }
   update(){
+    console.log('normal');
     this.teams.sort(sortFunction);
+    // this.teams.forEach((team,i) => {
+    //   console.log(team.name, team.scores.sumScore(), i);
+    // })
+    this.setHorizontalIterator();
     let element = '';
     
     this.teams.forEach((team, i) =>{
@@ -223,20 +262,71 @@ class LeaderBoard{
       <div class="board">
         <div class="number">${i+1}.</div>
         <div class="name">${team.name}</div>
-        <div class="score">${team.scores.sumScore()}</div>
+        <div class="score" id="lb_${team.id}">${team.scores.sumScore()}</div>
       </div>
-      `
+      `;
     });
 
     LeaderBoardElement.innerHTML = element;
+  }
+  setHorizontalIterator(){
+    this.teams.sort(sortFunction);
+    this.horizontalIterator = [];
+    this.teams.forEach((team,i) => {
+      // console.log(team.name, team.scores.sumScore(), i);
+      if(i%2){
+        this.horizontalIterator.unshift(i);
+      } else {
+        this.horizontalIterator.push(i);
+      }
+    })
+    // console.log(this.teams);
+    // console.log(this.horizontalIterator);
+  }
+  updateHorizontalLeaderboard(){
+    // console.log('hor');
+    const differentiator = [220, 180, 140, 100];
+    this.setHorizontalIterator();
+    let lgScore = this.largestScore() + differentiator[0];
+
+    // let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    console.log(vh);
+    let highestLead = 0.35 * vh;
+
+    LeaderBoardElement.innerHTML = '';
+    this.horizontalIterator.forEach((iterator, i) => {
+      let team = this.teams[iterator];
+      // console.log(iterator, i);
+      LeaderBoardElement.innerHTML += `
+      <div class="board">
+        <div class="name">${team.name.charAt(0)}</div>
+        <div class="score" id="lb_${team.id}">${team.scores.sumScore()}</div>
+      </div>
+      `;
+
+      console.log(differentiator[iterator]);
+        // <div class="number">${i+1}.</div>
+      let element = document.getElementById(`lb_${team.id}`)
+      let hei = ((team.scores.sumScore() + differentiator[iterator])/lgScore) * highestLead;
+      console.log(hei, team.scores.sumScore(), lgScore);
+      element.style.height = `${
+        // ((team.scores.sumScore() + differentiator[iterator])/lgScore) * 0.2 * vh
+        hei
+      }px`;
+    })
   }
 }
 
 class Teams{
   constructor(teamNames){
     this.teams = [];
+
+    teamsElement.innerHTML = '';
+
     teamNames.forEach(teamName => {
       this.teams.push(new Team(teamName, teamName.toLowerCase()));
+      teamsElement.innerHTML += `<div class="name">${teamName}</div>`;
     });
     this.update();
     this.leaderboard = new LeaderBoard(this.teams);
@@ -251,94 +341,40 @@ class Teams{
       if(id[2] != team.id) return;
       if(id[0]=='plus') team.plus(id[1]);
       if(id[0]=='minus') team.minus(id[1]);
-
     })    
 
     this.update();
 
-    this.leaderboard.update();
+    this.leaderboard.updateHorizontalLeaderboard();
+  }
+
+  removeScore(el){
+    let id = el.id;
+    id = id.split('_');
+
+    this.teams.forEach(team => {
+      // console.log(id[2], team.id);
+      if(id[3] != team.id) return;
+      // console.log(typeof(id[2]));
+      team.scores.removeScore(id[1], id[2])
+    })    
+
+    this.update();
+
+    this.leaderboard.updateHorizontalLeaderboard();
   }
 
   update(){
-    scoreBoard.innerHTML = ``;
-
-    this.teams.forEach(team => {
-      scoreBoard.innerHTML += `
-        <div class="team">
-          <div class="title">${team.name}</div>
-          <div class="scores" id="score_${team.id}">
-        </div>
-      `
-
-      team.scores.updateEl;
-
-      team.scores.setElement();
-      
-    })
+    scoreWajib.innerHTML = ``;
+    scoreQWC.innerHTML = ``;
+    scoreRebutan.innerHTML = ``;
     
+    this.teams.forEach(team => {
+      scoreWajib.innerHTML += team.scores.setElScoreWajib();
+      scoreQWC.innerHTML += team.scores.setElScoreQWC();
+      scoreRebutan.innerHTML += team.scores.setElScoreRebutan();
+    })
   }
 }
 
 export { Team, LeaderBoard, Teams, alphaVal, valAlpha };
-        // <div class="minus button" id="${team.id}">-</div>
-        // <div class="plus button" id="${team.id}">+</div>
-
-
-
-
-
-
-  // plus({id='', score=100, key='', itr=0}){
-  //   console.log(id);
-  //   // console.log(itr);
-  //   if (key != '' || itr != 0){
-  //     let i;
-  //     if (key) i = alphaVal(key, 97);
-  //     else i = itr;
-  //     // console.log(`${i+1} nyeh ${this.teams.length}`);
-  //     if (i+1 > this.teams.length) return;
-  //     this.teams[i].plus(score);
-  //   } else {
-  //     this.teams.forEach(team => {
-  //       if(id == team.id){
-  //         team.plus(score);
-  //       }
-  //     })
-  //   } 
-  //   // this.update();
-  //   this.leaderboard.update();
-  // }
-  // minus({id='', score = 100, key='', itr=0}){
-  //   console.log(id);
-  //   // console.log(itr);
-  //   if (key != '' || itr != 0){
-  //     let i;
-  //     if (key) i = alphaVal(key, 97);
-  //     else i = itr;
-  //     // console.log(`${i+1} nyeh ${this.teams.length}`);
-  //     if (i+1 > this.teams.length) return;
-  //     this.teams[i].minus(score);
-  //   } else {
-  //     this.teams.forEach(team => {
-  //       if(id == team.id){
-  //         team.minus(score);
-  //       }
-  //     })
-  //   }
-  //   // this.update();
-  //   this.leaderboard.update();
-  // }
-
-  // update(){
-  //   let element = ``;
-  //   this.teams.forEach(team =>{
-  //     element += `
-  //     <div class="team label">
-  //       <div class="name">${team.name}</div>
-  //       <div class="minus button" onclick="minusClick(this)" id="minus-${team.id}">-</div>
-  //       <div class="score">${team.score}</div>
-  //       <div class="plus button" onclick="plusClick(this)" id="plus-${team.id}">+</div>
-  //     </div>`;
-  //   })
-  //   teamsElement.innerHTML = element;
-  // }
