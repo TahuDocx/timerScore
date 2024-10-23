@@ -1,9 +1,44 @@
 import { Input } from '../input.js';
-import { Teams, alphaVal, valAlpha } from '../leaderBoard.js';
+import { Teams, alphaVal, valAlpha } from '../leaderBoardFin.js';
 import { CountdownTimer } from '../timer.js';
 
-const timer = new CountdownTimer(0,15,0, [[0,5,0], [0,10,0], [0,15,0]])
+const timer = new CountdownTimer(0,10,0, [[0,5,0], [0,10,0], [0,15,0]])
 const teams = new Teams(['A', 'B', 'C', 'D'])
+
+teams.teams.forEach(team => {
+  let wajib = (localStorage.getItem(`${team.id}_f_wajib`)) ? [...localStorage.getItem(`${team.id}_f_wajib`).split(',')] : [];
+    if (wajib){
+      wajib.forEach((item, i) => {
+        wajib[i] = parseInt(item)
+      })
+    }
+  team.scores.scoreWajib = [...wajib];
+
+  console.log(wajib);
+  
+  let qwc = (localStorage.getItem(`${team.id}_f_qwc`)) ? [...localStorage.getItem(`${team.id}_f_qwc`).split(',')] : [];
+  if (qwc){
+    qwc.forEach((item, i) => {
+      qwc[i] = parseInt(item)
+    })
+  }
+  team.scores.scoreQWC = [...qwc];
+
+  console.log(qwc)
+
+  let rebutan = (localStorage.getItem(`${team.id}_f_rebutan`)) ? [...localStorage.getItem(`${team.id}_f_rebutan`).split(',')] : [];
+  if (rebutan){
+    rebutan.forEach((item, i) => {
+      rebutan[i] = parseInt(item)
+    })
+  }
+  team.scores.scoreRebutan = [...rebutan];
+
+  console.log(rebutan)
+})
+
+teams.update()
+teams.leaderboard.updateHorizontalLeaderboard()
 
 function plusClick(id, score=100){
   // console.log(`plus ${id.id} ${id.class}`);
@@ -25,7 +60,6 @@ document.minusClick = minusClick;
 document.timer = timer;
 document.updateScore = updateScore;
 document.removeScore = removeScore;
-
 
 const keyInput = Input(document.body);
 

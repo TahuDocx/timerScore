@@ -5,6 +5,40 @@ import { CountdownTimer } from '../../timer.js';
 const timer = new CountdownTimer(0,10,0, [[0,10,0], [0,5,0]])
 const teams = new Teams(['A - SMP Taruna Bakti', 'B - SMP Negeri 5', 'C - SMP Trimulia'])
 
+teams.teams.forEach(team => {
+  let wajib = (localStorage.getItem(`${team.id}_p_wajib`)) ? [...localStorage.getItem(`${team.id}_p_wajib`).split(',')] : [];
+    if (wajib){
+      wajib.forEach((item, i) => {
+        wajib[i] = parseInt(item)
+      })
+    }
+  team.scores.scoreWajib = [...wajib];
+
+  console.log(wajib);
+  
+  let qwc = (localStorage.getItem(`${team.id}_p_qwc`)) ? [...localStorage.getItem(`${team.id}_p_qwc`).split(',')] : [];
+  if (qwc){
+    qwc.forEach((item, i) => {
+      qwc[i] = parseInt(item)
+    })
+  }
+  team.scores.scoreQWC = [...qwc];
+
+  console.log(qwc)
+
+  let rebutan = (localStorage.getItem(`${team.id}_p_rebutan`)) ? [...localStorage.getItem(`${team.id}_p_rebutan`).split(',')] : [];
+  if (rebutan){
+    rebutan.forEach((item, i) => {
+      rebutan[i] = parseInt(item)
+    })
+  }
+  team.scores.scoreRebutan = [...rebutan];
+
+  console.log(rebutan)
+})
+
+teams.update()
+teams.leaderboard.updateHorizontalLeaderboard()
 
 function plusClick(id, score=100){
   // console.log(`plus ${id.id} ${id.class}`);

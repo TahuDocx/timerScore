@@ -85,8 +85,6 @@ class TeamScore{
     return temp;
   }
 
-
-
   setElScoreQWC(){
     let temp = `<div class="scorelist">
     <div class="scoreeee">
@@ -173,19 +171,19 @@ class TeamScore{
       case 'wajib':
         if (this.scoreWajib.length === 10) return;
         this.scoreWajib.push(100);
-        localStorage.setItem(`${this.id}_p_wajib`, this.scoreWajib);
+        localStorage.setItem(`${this.id}_f_wajib`, this.scoreWajib);
         return;
     
       case 'qwc':
         if (this.scoreQWC.length === 10) return;
         this.scoreQWC.push(100);
-        localStorage.setItem(`${this.id}_p_qwc`, this.scoreQWC);
+        localStorage.setItem(`${this.id}_f_qwc`, this.scoreQWC);
         return;
   
       case 'rebutan':
         if (this.scoreRebutan.length === 25) return;
         this.scoreRebutan.push(100);
-        localStorage.setItem(`${this.id}_p_rebutan`, this.scoreRebutan);
+        localStorage.setItem(`${this.id}_f_rebutan`, this.scoreRebutan);
         return;
           
       default:
@@ -197,19 +195,19 @@ class TeamScore{
       case 'wajib':
         if (this.scoreWajib.length === 10) return;
         this.scoreWajib.push(0);
-        localStorage.setItem(`${this.id}_p_wajib`, this.scoreWajib);
+        localStorage.setItem(`${this.id}_f_wajib`, this.scoreWajib);
         return;
     
       case 'qwc':
         if (this.scoreQWC.length === 10) return;
         this.scoreQWC.push(0);
-        localStorage.setItem(`${this.id}_p_qwc`, this.scoreQWC);
+        localStorage.setItem(`${this.id}_f_qwc`, this.scoreQWC);
         return;
   
       case 'rebutan':
         if (this.scoreRebutan.length === 25) return;
         this.scoreRebutan.push(-100);
-        localStorage.setItem(`${this.id}_p_rebutan`, this.scoreRebutan);
+        localStorage.setItem(`${this.id}_f_rebutan`, this.scoreRebutan);
         return;
           
       default:
@@ -221,19 +219,19 @@ class TeamScore{
       case 'wajib':
         if (this.scoreWajib.length === 0) return;
         this.scoreWajib.splice(index, 1);
-        localStorage.setItem(`${this.id}_p_wajib`, this.scoreWajib);
+        localStorage.setItem(`${this.id}_f_wajib`, this.scoreWajib);
         return;
     
       case 'qwc':
         if (this.scoreQWC.length === 0) return;
         this.scoreQWC.splice(index, 1);
-        localStorage.setItem(`${this.id}_p_qwc`, this.scoreQWC);
+        localStorage.setItem(`${this.id}_f_qwc`, this.scoreQWC);
         return;
   
       case 'rebutan':
         if (this.scoreRebutan.length === 0) return;
         this.scoreRebutan.splice(index, 1);
-        localStorage.setItem(`${this.id}_p_rebutan`, this.scoreRebutan);
+        localStorage.setItem(`${this.id}_f_rebutan`, this.scoreRebutan);
         return;
           
       default:
