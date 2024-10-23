@@ -75,6 +75,8 @@ h1 {
 
 .timer .timesup {
   color: #F09022;
+  /* border-color: #d9d9d9; */
+  /* border: 1px #d9d9d9 solid; */
 }
 
 .teamsboard {
@@ -186,10 +188,11 @@ h1 {
   padding: 1rem;
 }
 
-.scoreboard .score-buttons, .scoreboard .team-name {
-  display: grid;
+.scoreboard .score-buttons, .scoreboard .name {
+  /* display: grid;
   grid-template-columns: 12vw 12vw 12vw;
-  gap: 2rem;
+  gap: 2rem; */
+  font-size: 35px;
 }
 
 .scoreboard .score {
@@ -210,15 +213,40 @@ h1 {
 
 .scoreboard .tabs {
   display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr; */
   gap: 2rem;
+  align-items: end;
 }
 
 .scoreboard .tabs .tab {
   width: 10vw;
   text-align: center;
   padding: 1rem;
+  height: min-content;
   border-radius: 8px 8px 0 0;
   background-color: #d9d9d9;
+  transition-duration: .5s;
+}
+
+.scoreboard .tabs .tab:hover{
+  color: #F09022;
+  font-weight: 700;
+  padding: 1.25rem;
+  transition-duration: .5s;
+}
+
+.scoreboard .tabs .tab.active {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  transition-duration: .5s;
+}
+
+.scoreboard .tabs .tab.tab.active:hover {
+  padding: 1.75rem;
+  transition-duration: .5s;
 }
 
 .scoreboard .scorelist {

@@ -121,6 +121,11 @@ const sectionName = document.getElementById('section-name');
 
 tabWajib.addEventListener("click", () => {
   sectionName.innerHTML = 'WAJIB';
+
+  tabQWC.classList.remove('active');
+  tabRebutan.classList.remove('active');
+  tabWajib.classList.add('active');
+
   scoreQWC.classList.remove('active');
   scoreRebutan.classList.remove('active');
   scoreWajib.classList.add('active');
@@ -128,6 +133,11 @@ tabWajib.addEventListener("click", () => {
 
 tabQWC.addEventListener("click", () => {
   sectionName.innerHTML = 'QUICK WORD CHALLENGE';
+
+  tabWajib.classList.remove('active');
+  tabRebutan.classList.remove('active');
+  tabQWC.classList.add('active');
+
   scoreWajib.classList.remove('active');
   scoreRebutan.classList.remove('active');
   scoreQWC.classList.add('active');
@@ -135,6 +145,11 @@ tabQWC.addEventListener("click", () => {
 
 tabRebutan.addEventListener("click", () => {
   sectionName.innerHTML = 'REBUTAN';
+
+  tabQWC.classList.remove('active');
+  tabWajib.classList.remove('active');
+  tabRebutan.classList.add('active');
+
   scoreQWC.classList.remove('active');
   scoreWajib.classList.remove('active');
   scoreRebutan.classList.add('active');
