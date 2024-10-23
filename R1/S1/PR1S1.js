@@ -128,7 +128,7 @@ tabWajib.addEventListener("click", () => {
 })
 
 tabQWC.addEventListener("click", () => {
-  sectionName.innerHTML = 'QUICK WORD CHALLENG';
+  sectionName.innerHTML = 'QUICK WORD CHALLENGE';
   scoreWajib.classList.remove('active');
   scoreRebutan.classList.remove('active');
   scoreQWC.classList.add('active');

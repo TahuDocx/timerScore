@@ -239,6 +239,7 @@ class LeaderBoard{
     this.teams = [...teams];
     this.horizontalIterator = [];
     // this.setHorizontalIterator();
+    this.setHorizontalLeaderboard();
     this.updateHorizontalLeaderboard();
   }
   largestScore(){
@@ -283,38 +284,35 @@ class LeaderBoard{
     // console.log(this.teams);
     // console.log(this.horizontalIterator);
   }
-  updateHorizontalLeaderboard(){
-    // console.log('hor');
-    const differentiator = [220, 180, 140, 100];
-    this.setHorizontalIterator();
-    let lgScore = this.largestScore() + differentiator[0];
-
-    // let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-    let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    console.log(vh);
-    let highestLead = 0.35 * vh;
-
+  setHorizontalLeaderboard(){
+    console.log('test', this.teams)
     LeaderBoardElement.innerHTML = '';
-    this.horizontalIterator.forEach((iterator, i) => {
-      let team = this.teams[iterator];
-      // console.log(iterator, i);
+    this.teams.forEach((team, i) => {
       LeaderBoardElement.innerHTML += `
       <div class="board">
         <div class="name">${team.name.charAt(0)}</div>
         <div class="score" id="lb_${team.id}">${team.scores.sumScore()}</div>
       </div>
       `;
+    })
+  }
+  updateHorizontalLeaderboard(){
+    // console.log('hor');
+    // const differentiator = [220, 180, 140, 100];
+    let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    console.log(vh);
+    let lgScore = this.largestScore()
 
-      console.log(differentiator[iterator]);
+    // LeaderBoardElement.innerHTML = '';
+    this.teams.forEach((team, i) => {
         // <div class="number">${i+1}.</div>
       let element = document.getElementById(`lb_${team.id}`)
-      let hei = ((team.scores.sumScore() + differentiator[iterator])/lgScore) * highestLead;
+      let hei = ((team.scores.sumScore())/lgScore);
       console.log(hei, team.scores.sumScore(), lgScore);
-      element.style.height = `${
-        // ((team.scores.sumScore() + differentiator[iterator])/lgScore) * 0.2 * vh
-        hei
-      }px`;
+      element.style.height = `${hei * 25 + 10}vh`;
+      element.innerHTML = team.scores.sumScore()
     })
+
   }
 }
 
