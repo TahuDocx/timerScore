@@ -1,3 +1,7 @@
+html{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -7,7 +11,7 @@ body {
   cursor: pointer;
   padding: .5rem;
   border-radius: .5rem;
-  background-color: violet;
+  background-color: #d9d9d9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +39,7 @@ h1 {
   flex-direction: column;
   /* width: 50vw; */
   height: 50vh;
-  background-color: aquamarine;
+  background-color: #7D2E2E;
 }
 
 .timer .time {
@@ -43,11 +47,13 @@ h1 {
   /* background-color: aqua; */
   font-size: 8rem;
   font-weight: 800;
+  color: #d9d9d9;
 }
 
 .timer .time .xx {
   width: 5vw;
   text-align: center;
+  
 }
 
 .timer .buttons {
@@ -74,7 +80,8 @@ h1 {
   flex-direction: column;
   /* width: 50vw; */
   height: 50vh;
-  background-color: bisque;
+  background-color: #7D2E2E;
+  color: #d9d9d9;
   gap: 0;
 }
 
@@ -85,6 +92,7 @@ h1 {
   height: 50vh;
   align-items: end;
   justify-content: center;
+  transition-duration: 1s;
   /* padding: 2rem; */
 }
 
@@ -107,7 +115,7 @@ h1 {
 .teamsboard .leaderboard .board .score {
   /* width: 5vw; */
   text-align: center;
-  background-color: aquamarine;
+  background-color: #d9d9d9;
   padding: .5rem 1rem;
 }
 
@@ -127,7 +135,7 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: .5rem;
-  background-color: aquamarine;
+  background-color: rgb(192, 24, 161);
   font-size: 1rem;
 }
 
@@ -151,7 +159,8 @@ h1 {
 }
 
 .scoreboard {
-  background-color: aqua;
+  background-color: #F09022;
+  color: #7D2E2E;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -200,7 +209,7 @@ h1 {
   text-align: center;
   padding: 1rem;
   border-radius: 8px 8px 0 0;
-  background-color: aquamarine;
+  background-color: #d9d9d9;
 }
 
 .scoreboard .scorelist {
