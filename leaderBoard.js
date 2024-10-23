@@ -143,7 +143,7 @@ class TeamScore{
       totalScore+=score;
     })
 
-    return totalScore;
+    return (totalScore)?totalScore:0;
   }
   plusScore(category, score=100){
     switch (category) {
@@ -183,7 +183,7 @@ class TeamScore{
         return;
   
       case 'rebutan':
-        if (this.scoreRebutan.length === 10) return;
+        if (this.scoreRebutan.length === 25) return;
         this.scoreRebutan.push(-100);
         return;
           
@@ -247,7 +247,7 @@ class LeaderBoard{
     this.teams.forEach((team, i) =>{
       largeScore = (team.scores.sumScore() > largeScore) ? team.scores.sumScore() : largeScore;
     })
-    return largeScore;
+    return (largeScore)?largeScore:0;
   }
   update(){
     console.log('normal');
@@ -302,12 +302,14 @@ class LeaderBoard{
     let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     console.log(vh);
     let lgScore = this.largestScore()
+    // console.log(lgScore)
 
     // LeaderBoardElement.innerHTML = '';
     this.teams.forEach((team, i) => {
         // <div class="number">${i+1}.</div>
       let element = document.getElementById(`lb_${team.id}`)
-      let hei = ((team.scores.sumScore())/lgScore);
+      let hei = (team.scores.sumScore()/lgScore);
+      hei = (hei) ? hei : 0;
       console.log(hei, team.scores.sumScore(), lgScore);
       element.style.height = `${hei * 25 + 10}vh`;
       element.innerHTML = team.scores.sumScore()

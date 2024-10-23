@@ -46,7 +46,7 @@ document.body.addEventListener("keydown", (event) => {
     if (timer.isRunning) timer.pause();
     else timer.start();
     isDone = true;
-  } else if (keyInput.key_down('r')){
+  } else if (keyInput.key_down('r') || keyInput.key_down('R')){
     timer.restart();
     isDone = true;
   }
