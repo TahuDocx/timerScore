@@ -308,9 +308,9 @@ class LeaderBoard{
     this.teams.forEach((team, i) => {
         // <div class="number">${i+1}.</div>
       let element = document.getElementById(`lb_${team.id}`)
-      let hei = (team.scores.sumScore()/lgScore);
+      let hei = Math.max(team.scores.sumScore()/lgScore, 0);
       hei = (hei) ? hei : 0;
-      console.log(hei, team.scores.sumScore(), lgScore);
+      console.log(hei, hei * 25 + 10, team.scores.sumScore(), lgScore);
       element.style.height = `${hei * 25 + 10}vh`;
       element.innerHTML = team.scores.sumScore()
     })
