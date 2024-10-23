@@ -46,7 +46,9 @@ class TeamScore{
     this.scoreRebutan = [];
   }
   setElScoreWajib(){
-    let temp = `<div class="scorelist grid">`
+    let temp = `<div class="scorelist">
+    <div class="scoreeee">
+    `
 
     let score;
     for(let i=0; i<10; i++){
@@ -63,6 +65,7 @@ class TeamScore{
     }
 
     temp += `
+        </div>
         <div class="buttons">
           <div class="button minus" id="minus_wajib_${this.id}" onclick="updateScore(this)">-</div>
           <div class="button plus" id="plus_wajib_${this.id}" onclick="updateScore(this)">+</div>
@@ -74,7 +77,9 @@ class TeamScore{
   }
 
   setElScoreQWC(){
-    let temp = `<div class="scorelist grid">`
+    let temp = `<div class="scorelist">
+    <div class="scoreeee">
+    `
 
     let score;
     for(let i=0; i<10; i++){
@@ -91,6 +96,7 @@ class TeamScore{
     }
 
     temp += `
+        </div>
         <div class="buttons">
           <div class="button minus" id="minus_qwc_${this.id}" onclick="updateScore(this)">-</div>
           <div class="button plus" id="plus_qwc_${this.id}" onclick="updateScore(this)">+</div>
@@ -102,10 +108,13 @@ class TeamScore{
   }
 
   setElScoreRebutan(){
-    let temp = `<div class="scorelist grid">`
+    let temp = `
+      <div class="scorelist rebutan grid">
+      <div class="scoreeee">
+    `
 
     let score;
-    for(let i=0; i<10; i++){
+    for(let i=0; i<25; i++){
       let checkScore = (this.scoreRebutan[i] || this.scoreRebutan[i] === 0);
       score = checkScore ? this.scoreRebutan[i] : '';
       temp += `<div class="score-container">
@@ -119,6 +128,7 @@ class TeamScore{
     }
 
     temp += `
+        </div>
         <div class="buttons">
           <div class="button minus" id="minus_rebutan_${this.id}" onclick="updateScore(this)">-</div>
           <div class="button plus" id="plus_rebutan_${this.id}" onclick="updateScore(this)">+</div>
@@ -158,7 +168,7 @@ class TeamScore{
         return;
   
       case 'rebutan':
-        if (this.scoreRebutan.length === 10) return;
+        if (this.scoreRebutan.length === 25) return;
         this.scoreRebutan.push(100);
         return;
           
