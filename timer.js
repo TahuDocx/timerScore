@@ -1,6 +1,4 @@
-const minutesElementConst = document.getElementById("minutes");
-const secondsElementConst = document.getElementById("seconds");
-const sixtiethElementConst = document.getElementById("sixtieth");
+const timeElement = document.getElementById('time');
 
 const minutesElement = document.getElementById("minutes");
 const secondsElement = document.getElementById("seconds");
@@ -70,6 +68,7 @@ class CountdownTimer{
   }
 
   update(){
+    timeElement.classList.remove('timesup');
     // console.log(`update ${this.seconds}.${this.sixtieth}`);
 
     this.sixtieth--;
@@ -87,6 +86,7 @@ class CountdownTimer{
 
     if (this.minutes === 0 && this.seconds === 0 && this.sixtieth === 0) {
       this.pause();
+      timeElement.classList.add('timesup');
     }
   }
   

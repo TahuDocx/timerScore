@@ -73,6 +73,10 @@ h1 {
   font-size: 2rem;
 }
 
+.timer .timesup {
+  color: #F09022;
+}
+
 .teamsboard {
   display: flex;
   align-items: center;
