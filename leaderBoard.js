@@ -352,7 +352,9 @@ class Teams{
 
     teamNames.forEach(teamName => {
       this.teams.push(new Team(teamName, teamName.toLowerCase()));
-      teamsElement.innerHTML += `<div class="name">${teamName}</div>`;
+      // let team = teamName.split(' ');
+
+      teamsElement.innerHTML += `<div class="name">${teamName.split('-').join('<br>')}</div>`;
     });
     this.update();
     this.leaderboard = new LeaderBoard(this.teams);

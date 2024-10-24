@@ -313,3 +313,9 @@ h1 {
   width: 1.25rem;
   height: 1.25rem;
 }
+
+.scoreboard .team-name {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 1.5rem;
+}

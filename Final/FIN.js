@@ -82,6 +82,10 @@ document.body.addEventListener("keydown", (event) => {
   } else if (keyInput.key_down('r') || keyInput.key_down('R')){
     timer.restart();
     isDone = true;
+  } else if (keyInput.key_down('p') || keyInput.key_down('P')){
+    timer.restart();
+    timer.start()
+    isDone = true;
   }
 
   if (!isWaiting && !isDone) numChars.forEach((num,i)=>{
